@@ -1,13 +1,19 @@
+
 var React = require('react')
-var createReactClass = require('create-react-class');
-var indexComponent = createReactClass({
+var CreateReactClass = require('create-react-class');
+var defaultlayout = require("./layout/master")
+
+var IndexComponent = CreateReactClass({
   render: function() {
     return(
-      <div>
-        <h1>this is my first react</h1>
-      </div>
-    )
+      <defaultlayout>
+        <div>
+          {this.props.name}
+        </div>
+      </defaultlayout>
+      )
+    }
   }
-})
+)
 
-module.exports = indexComponent
+module.exports = IndexComponent
