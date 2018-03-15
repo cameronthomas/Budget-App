@@ -1,6 +1,8 @@
+var ip = require('ip')
+
 const { Client } = require('pg')
 const client = new Client({
-  host: 'localhost',
+  host: ip.address() == "159.65.75.194" ? "159.65.75.194" : "localhost",
   port: 5432,
   user: 'cameronthomas',
   password: 'password',
