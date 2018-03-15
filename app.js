@@ -3,11 +3,15 @@ var ip = require('ip')
 var port = ip.address() == "159.65.75.194" ? 80 : 3000
 var app = express();
 
+app.set('views', __dirname + '/views')
+app.set('view engine', 'jsx')
+app.engine('jsx', require('express-react-views').createEngine())
+
 /**
 * Homepage
 */
 app.get('/', function (req, res) {
-	res.send('This request will get the home page for the budget')
+	res.render('index', {})
 });
 
 /**

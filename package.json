@@ -1,5 +1,5 @@
 {
-  "name": "divvybudgetapp",
+  "name": "my-package",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,16 +10,24 @@
     "type": "git",
     "url": "git+https://github.com/cameronthomas/Budget-App.git"
   },
-  "author": "",
+  "author": "Cameron Thomas",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/cameronthomas/Budget-App/issues"
   },
   "homepage": "https://github.com/cameronthomas/Budget-App#readme",
   "dependencies": {
+    "create-react-class": "^15.6.3",
     "express": "^4.16.3",
+    "express-react-views": "^0.10.5",
     "ip": "^1.1.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
-  }
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1"
+  },
+  "babel": {}
 }
