@@ -5,6 +5,7 @@ var db = require('./db/index')
 var app = express();
 var promise = require('promise')
 var bodyParser = require('body-parser')
+var jade = require('jade');
 
 // app.set('views', __dirname + '/views')
 // app.set('view engine', 'jsx')
@@ -30,7 +31,13 @@ app.get('/', function (req, res) {
 	var callback = function(db_data) {
 		console.log("this is the callback")
 		console.log("This is the data:", db_data)
+
+		// var budgetsTableRenderFunc = jade.compileFile('./views/budgetsTable.jade', {data: db_data})
+		//
+		// var budgetsTableHtml = budgetsTableRenderFunc({data: db_data})
 		res.render('index', {data: db_data})
+
+		//res.render('index', {data: db_data})
 	}
 
 	db.selectBudgets(callback)
@@ -45,10 +52,16 @@ function test() {
 * Get info for specific budget
 */
 app.get('/budgetTransactions', function (req, res) {
-		res.send('This request will get the information for a specific budget')
+		//res.send('This request will get the information for a specific budget')
 		console.log(req.query)
 
-		db.selectBudgetTransactions(req.query.budgetName)
+		var callback = function(db_data) {
+			console.log("this is the callback")
+			console.log("This is the data:", db_data)
+			res.render('budgetTransactions', {data: db_data})
+		}
+
+		db.selectBudgetTransactions(req.query.budgetName, callback)
 
 		// Might need this
 		//res.end()
@@ -59,8 +72,14 @@ app.get('/budgetTransactions', function (req, res) {
 */
 app.post('/createBudget', function (req, res) {
 	console.log(req.body)
-  res.send('This is the post to create a new budget\n')
-	db.insertBudget()
+  //res.send('This is the post to create a new budget\n')
+
+	var callback = function(db_data) {
+		console.log("create budget callback data:", db_data)
+		res.render('budgetsTable', {data: db_data})
+	}
+
+	db.insertBudget(req.body, callback)
 })
 
 /**

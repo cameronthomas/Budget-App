@@ -28,31 +28,28 @@ module.exports = {
     })
     .catch(e => console.error(e.stack))
   },
-  selectBudgetTransactions: function (budgetName) {
+  selectBudgetTransactions: function (budgetName, callback) {
     console.log("Select transactions")
+    const text = {
+      name: 'fetch-transactions',
+      text: 'SELECT * FROM transactions WHERE BUDGET_NAME = $1',
+      values: [budgetName]
+    }
 
-      const query = {
-        // give the query a unique name
-        name: 'fetch-transactions',
-        text: 'SELECT * FROM transactions WHERE BUDGET_NAME = $1',
-        values: [budgetName]
-      }
-
-      // callback
-      client.query(query, (err, res) => {
-        if (err) {
-          console.log(err.stack)
-        } else {
-          console.log(res.rows)
-        }
-      })
+    // Run query
+    client.query(text)
+    .then(res => {
+      callback(res.rows)
+    })
+    .catch(e => console.error(e.stack))
   },
-  insertBudget: function () {
+  insertBudget: function (newBudget, callback) {
     console.log("Insert budget")
-      // const query = "INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, CATEGORY, NOTES)"
-      // + "VALUES ($1, $2, $3, $4) RETURNING *"
-      // const values = ['Merchaasdfsdfnt 2', 22330, 1, 'these are the notes']
-      //
+      const text = "INSERT INTO budgets (BUDGET_NAME, BUDGET_AMOUNT)"
+      + "VALUES ($1, $2)"
+      const values = [newBudget.budgetName, newBudget.budgetAmount]
+      console.log("value:", values)
+
       // // callback
       // client.query(query, values, (err, res) => {
       //   if (err) {
@@ -61,6 +58,22 @@ module.exports = {
       //     console.log(res.rows)
       //   }
       // })
+
+      // client.query(text, values)
+      // .then(res => {
+      //   callback(res.rows)
+      // })
+      // .catch(e => console.error(e.stack))
+
+      client.query(text, values)
+      .then(res => {
+        client.query("SELECT * FROM budgets")
+        .then(res => {
+          callback(res.rows)
+        })
+        .catch(e => console.error(e.stack))
+      })
+      .catch(e => console.error(e.stack))
   },
   insertTransaction: function () {
     console.log("Insert transaction")

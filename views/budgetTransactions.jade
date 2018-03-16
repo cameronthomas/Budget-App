@@ -1,0 +1,14 @@
+table(class="table table-striped")
+  thead
+    tr
+      th(scope="col")="Merchant Name"
+      th(scope="col")="Purchase Amount"
+      th(scope="col")="Budget Name"
+      th(scope="col")="Notes"
+  tbody
+    for transaction in data
+      tr(scope="row")
+        td=transaction.merchant_name
+        td=transaction.purchase_amount
+        td=transaction.budget_name
+        td=transaction.notes

@@ -1,0 +1,17 @@
+table(class="table table-striped")
+  thead
+    tr
+      th(scope="col")="Budget Name"
+      th(scope="col")="Budget Amount"
+  tbody
+    for budget in data
+      tr(scope="row")
+        td=budget.budget_name
+        td=budget.budget_amount
+        td
+          button(type="button" class="btn btn-outline-info" data-toggle="modal" onclick="viewTransactions('#{budget.budget_name}')")
+            ="See Transactions"
+        td
+          button(type="button" class="btn btn-outline-success" data-toggle="modal" onclick="$('#addTransactionModal').modal('show');")
+              ="Add Transactions"
+  

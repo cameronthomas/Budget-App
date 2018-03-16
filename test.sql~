@@ -1,4 +1,3 @@
-
 /**
 * Budgets Table
 */
@@ -8,8 +7,8 @@ DROP TABLE budgets;
 
 -- Create new table
 CREATE TABLE BUDGETS(
-   ID SERIAL PRIMARY KEY,
-   BUDGET_NAME TEXT NOT NULL,
+--   ID SERIAL PRIMARY KEY,
+   BUDGET_NAME TEXT PRIMARY KEY NOT NULL,
    BUDGET_AMOUNT MONEY NOT NULL
 );
 
@@ -23,6 +22,9 @@ VALUES ('Engineering', 30000);
 INSERT INTO budgets (budget_name, budget_amount)
 VALUES ('Sales', 500); 
 
+INSERT INTO budgets (budget_name, budget_amount)
+VALUES ('HR', 500);
+
 -- Display values in new table
 SELECT * FROM budgets;
 
@@ -35,30 +37,37 @@ CREATE TABLE TRANSACTIONS(
    ID SERIAL PRIMARY KEY,
    MERCHANT_NAME TEXT NOT NULL,
    PURCHASE_AMOUNT MONEY NOT NULL,
-   CATEGORY INT REFERENCES budgets(ID),
+   BUDGET_NAME TEXT REFERENCES budgets(budget_name),
    NOTES TEXT
 );
 
 -- INSERT into new table
-INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, CATEGORY, NOTES)
-VALUES ('Merchant 1', 20, 1, 'these are the notes');
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'Engineering', 'these are the notes');
 
--- INSERT into new table
-INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, CATEGORY, NOTES)
-VALUES ('Merchant 2', 220, 1, 'these are the notes');
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'Engineering', 'these are the notes');
 
-INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, CATEGORY, NOTES)
-VALUES ('Merchant 2', 220, 1, 'these are the notes');
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'Engineering', 'these are the notes');
 
-INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, CATEGORY, NOTES)
-VALUES ('Merchant 2', 220, 1, 'these are the notes');
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'HR', 'these are the notes');
 
-INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, CATEGORY, NOTES)
-VALUES ('Merchant 2', 220, 1, 'these are the notes');
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'HR', 'these are the notes');
 
-INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, CATEGORY, NOTES)
-VALUES ('Merchant 2', 220, 1, 'these are the notes');
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+
+
+
+
+
+
+
 
 -- Display new table
-SELECT * from transactions
-WHERE CATEGORY = 1;
+SELECT * from transactions;
+
+

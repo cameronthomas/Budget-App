@@ -30,7 +30,10 @@ function addBudget() {
         }),
         success: function(msg){
             console.log(msg);
+            $('#budgetsTableDiv').html(msg)
             $('#addBudgetModal').modal('hide');
+            $('#budgetName').val('')
+            $('#budgetAmount').val('')
         },
         error: function(msg) {
           console.log('error' + msg);
@@ -75,6 +78,7 @@ function viewTransactions(name) {
       },
       success: function(msg){
           console.log(msg);
+          $('#transactionsTable').html(msg)
       },
       error: function(msg) {
         console.log('error' + msg);

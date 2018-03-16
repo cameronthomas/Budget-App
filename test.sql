@@ -60,6 +60,42 @@ VALUES ('Merchant 1', 234, 'HR', 'these are the notes');
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
 VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
 
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'Sales', 'these are the notasfsadk;fjks;dkfjs;dkf;sdfj;sdjf;sfjksdklsdfklkljsdfke
+asdlfkjs;adjf;lsdjfsdfljsjdkfsddddddddddddddal;ksjdf;asdjflsadf
+asl;dkfj;asldjf;lasjdfjksaldfjsadfsldfjs
+askldfjlsaf
+askdf;s');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
 
 
 
