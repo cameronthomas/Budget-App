@@ -1,5 +1,4 @@
 var ip = require('ip')
-
 const { Client } = require('pg')
 const client = new Client({
   host: ip.address() == "159.65.75.194" ? "159.65.75.194" : "localhost",
@@ -18,27 +17,35 @@ client.connect((err) => {
 })
 
 module.exports = {
-  selectBudgets: function() {
+  selectBudgets: function(callback) {
     console.log("Select budgets")
+    const text = "SELECT * FROM BUDGETS"
+
+    // Run question
+    client.query(text)
+    .then(res => {
+      callback(res.rows)
+    })
+    .catch(e => console.error(e.stack))
   },
-  selectBudgetTransactions: function () {
+  selectBudgetTransactions: function (budgetName) {
     console.log("Select transactions")
 
-      // const query = {
-      //   // give the query a unique name
-      //   name: 'fetch-transactions',
-      //   text: 'SELECT * FROM transactions WHERE CATEGORY = $1',
-      //   values: [1]
-      // }
-      //
-      // // callback
-      // client.query(query, (err, res) => {
-      //   if (err) {
-      //     console.log(err.stack)
-      //   } else {
-      //     console.log(res.rows)
-      //   }
-      // })
+      const query = {
+        // give the query a unique name
+        name: 'fetch-transactions',
+        text: 'SELECT * FROM transactions WHERE BUDGET_NAME = $1',
+        values: [budgetName]
+      }
+
+      // callback
+      client.query(query, (err, res) => {
+        if (err) {
+          console.log(err.stack)
+        } else {
+          console.log(res.rows)
+        }
+      })
   },
   insertBudget: function () {
     console.log("Insert budget")

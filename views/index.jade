@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+  head
+    title= asdfas
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js")
+    //- script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js")
+    //- script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js")
+    script(src='./js/myJsFile.js')
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
+    //- link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css")
+    link(rel="stylesheet", href="./public/style.css")
+  body
+    include ./navbar.html
+    
+    div
+      table(class="table table-striped")
+        thead
+          tr
+            th(scope="col")="Budget Name"
+            th(scope="col")="Budget Amount"
+            tbody
+          for budget in data
+            tr(scope="row")
+              td=budget.budget_name
+              td=budget.budget_amount
+              td
+                button(type="button" class="btn btn-outline-info" data-toggle="modal" onclick="viewTransactions('#{budget.budget_name}')")
+                  ="See Transactions"
+              td
+                button(type="button" class="btn btn-outline-success" data-toggle="modal" onclick="$('#addTransactionModal').modal('show');")
+                    ="Add Transactions"
+
+    include ./addBudgetModal.html
+    include ./addTransactionModal.html
+    include ./viewTransactionsModal.html
+  
