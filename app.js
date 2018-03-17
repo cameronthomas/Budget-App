@@ -28,18 +28,6 @@ app.get('/', function (req, res) {
 	db.selectBudgets(callback)
 });
 
-app.get('/', function (req, res) {
-	// Call after database call
-	const callback = function(db_data) {
-		// var budgetsTableRenderFunc = jade.compileFile('./views/budgetsTable.jade', {data: db_data})
-		// var budgetsTableHtml = budgetsTableRenderFunc({data: db_data})
-		res.render('index', {data: db_data})
-	}
-
-	// Dabase call
-	db.selectBudgets(callback)
-});
-
 /**
 * Get info for specific budget
 */
@@ -56,7 +44,11 @@ app.get('/budgetTransactions', function (req, res) {
 */
 app.post('/createBudget', function (req, res) {
 	var callback = function(db_data) {
-		res.render('budgetsTable', {data: db_data})
+	  res.render('budgetsTable', {
+	    data: db_data
+	  })
+	  console.log(db_data)
+	  //res.send(db_data)
 	}
 
 	db.insertBudget(req.body, callback)
@@ -66,9 +58,15 @@ app.post('/createBudget', function (req, res) {
 * Create a new transaction
 */
 app.post('/createTransaction', function (req, res) {
-  res.send('This is the post to create a new transaction\n')
-	console.log(req.body)
-	db.insertTransaction(req.body)
+	var callback = function(db_data) {
+		// res.render('budgetsTable', {
+	  //   data: db_data
+	  // })
+		res.send(db_data)
+	  console.log(db_data)
+	}
+
+	db.insertTransaction(req.body, callback)
 })
 
 // Handle 404

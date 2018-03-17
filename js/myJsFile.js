@@ -21,8 +21,7 @@ function addBudget() {
             'budgetAmount': $("#budgetAmount").val()
         }),
         success: function(msg){
-            console.log(msg);
-            $('#budgetsTableDiv').html(msg)
+            $("#budgetTable").find('tbody').append($(msg))
             $('#addBudgetModal').modal('hide');
             $('#budgetName').val('')
             $('#budgetAmount').val('')
@@ -49,6 +48,8 @@ function addTransaction() {
   var url = "http://localhost:3000/createTransaction"
   var merchantValid = $("#merchant").val().length > 0
   var purchaseAmountVald = $.isNumeric($("#purchaseAmount").val())
+  var budgetName = $('#addTransactionNameLabel').text()
+
 
   // Make fields red if invalid
   merchantValid ? $('#merchant').css('border-color', '#ced4da') : $('#merchant').css('border-color', 'red')
@@ -61,11 +62,13 @@ function addTransaction() {
       data: {
         'merchant': $("#merchant").val(),
         'purchaseAmount' : $("#purchaseAmount").val(),
-        'budgetName' : $('#addTransactionNameLabel').text(),
+        'budgetName' : budgetName,
         'notes' : $("#notes").val()
       },
       success: function(msg){
-          console.log(msg);
+        console.log(msg)
+          $('#' + budgetName + "AmountUsed").html(msg[0].budget_amount_used)
+          $('#' + budgetName + "AmountLeft").html(msg[0].budget_amount_left)
           $('#addTransactionModal').modal('hide');
           $("#merchant").val('')
           $("#purchaseAmount").val('')

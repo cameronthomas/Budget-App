@@ -59,19 +59,14 @@ module.exports = {
     console.log("Insert budget")
 
     // Create insert query
-    const text = "INSERT INTO budgets (BUDGET_NAME, BUDGET_AMOUNT)"
-    + "VALUES ($1, $2)"
+    const text = "INSERT INTO budgets (BUDGET_NAME, BUDGET_AMOUNT, "
+    + "BUDGET_AMOUNT_USED, BUDGET_AMOUNT_LEFT)"
+    + "VALUES ($1, $2, 0, $2) RETURNING *"
     const values = [newBudget.budgetName, newBudget.budgetAmount]
 
-    // Inert budget into table
     client.query(text, values)
     .then(res => {
-      // Select all budgets after insert of new budget
-      client.query("SELECT * FROM budgets")
-      .then(res => {
-        callback(res.rows)
-      })
-      .catch(e => console.error(e.stack))
+      callback(res.rows)
     })
     .catch(e => console.error(e.stack))
   },
@@ -79,16 +74,30 @@ module.exports = {
   /**
   * Insert transaction
   */
-  insertTransaction: function (data) {
+  insertTransaction: function (data, callback) {
     console.log("Insert transaction")
-    const text = "INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)"
-    + "VALUES ($1, $2, $3, $4)"
-    const values = [data.merchant, data.purchaseAmount, data.budgetName, data.notes]
+
+    const insertTransactionQuery = "INSERT INTO transactions"
+    +"(MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)"
+    + "VALUES ($1, $2, $3, $4);"
+    const insertTransactionQueryValues = [data.merchant, data.purchaseAmount, data.budgetName, data.notes]
+
+    const updateBudgetQuery = {
+      text : "UPDATE BUDGETS "
+      +"SET budget_amount_used = budget_amount_used + $1, "
+      +"budget_amount_left = budget_amount_left - $1"
+      +"WHERE budget_name = $2 RETURNING *",
+      values : [data.purchaseAmount, data.budgetName]
+    }
 
     // Run query
-    client.query(text, values)
+    client.query(insertTransactionQuery, insertTransactionQueryValues)
     .then(res => {
-      console.log(res)
+      client.query(updateBudgetQuery)
+      .then(res => {
+        callback(res.rows)
+      })
+      .catch(e => console.error(e.stack))
     })
     .catch(e => console.error(e.stack))
   }

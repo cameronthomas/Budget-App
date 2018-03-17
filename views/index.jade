@@ -19,12 +19,16 @@ html(lang="en")
         thead
           tr
             th(scope="col")="Budget Name"
-            th(scope="col")="Budget Amount"
+            th(scope="col")="Budget Amount"     
+            th(scope="col")="Amount Used"     
+            th(scope="col")="Amount left" 
         tbody
           for budget in data
             tr(scope="row")
               td=budget.budget_name
               td=budget.budget_amount
+              td(id="#{budget.budget_name}AmountUsed")=budget.budget_amount_used
+              td(id="#{budget.budget_name}AmountLeft")=budget.budget_amount_left
               td
                 button(type="button" class="btn btn-outline-info" data-toggle="modal" onclick="viewTransactions('#{budget.budget_name}')")
                   ="See Transactions"
