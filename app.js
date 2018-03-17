@@ -1,8 +1,9 @@
 var express = require('express');
+var app = express();
 var ip = require('ip')
 var port = ip.address() == "159.65.75.194" ? 80 : 3000
 var db = require('./db/index')
-var app = express();
+var reportGenerator = require('./js/generateReport')
 var promise = require('promise')
 var bodyParser = require('body-parser')
 var jade = require('jade');
@@ -74,9 +75,20 @@ app.use(function (req, res, next) {
   res.status(404).send("Oops, we can't find what you are looking for!")
 })
 
+
 /**
 * Start server
 */
 app.listen(port, function () {
 	console.log('Budget app listening on port ' + port + '!')
+	getExpenseReport()
 })
+
+
+function getExpenseReport() {
+	const callback = function(db_data) {
+		reportGenerator.expenseReport(db_data)
+	}
+
+	db.selectBudgetTransactions('Engineering', callback)
+}

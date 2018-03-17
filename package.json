@@ -25,13 +25,16 @@
     "express": "^4.16.3",
     "express-promise-router": "^3.0.1",
     "express-react-views": "^0.10.5",
+    "file-system": "^2.2.2",
     "ip": "^1.1.5",
     "jade": "^1.11.0",
+    "pdfkit": "^0.8.3",
     "pg": "^7.4.1",
     "pg-promise": "^8.2.2",
     "promise": "^8.0.1",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "voilab-pdf-table": "^0.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

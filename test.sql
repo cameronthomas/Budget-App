@@ -7,7 +7,6 @@ DROP TABLE budgets;
 
 -- Create new table
 CREATE TABLE BUDGETS(
---   ID SERIAL PRIMARY KEY,
    BUDGET_NAME TEXT PRIMARY KEY NOT NULL,
    BUDGET_AMOUNT MONEY NOT NULL,
    BUDGET_AMOUNT_USED MONEY NOT NULL,
@@ -45,8 +44,25 @@ CREATE TABLE TRANSACTIONS(
 
 -- INSERT into new table
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'Engineering', 'these are the notes');
+VALUES ('Merchant 1', 1, 'Engineering', 'these are the notes');
 
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 2', 2, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 3', 3, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 4', 4, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 5', 5, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 6', 6, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
 
 
 
