@@ -2,7 +2,7 @@ tr(scope="row")
   td=data[0].budget_name
   td=data[0].budget_amount
   td(id="#{data[0].budget_name}AmountUsed")=data[0].budget_amount_used
-  td(id="#{data[0].budget_name}AmountUsed")=data[0].budget_amount_left
+  td(id="#{data[0].budget_name}AmountLeft")=data[0].budget_amount_left
   td
     button(type="button" class="btn btn-outline-info" data-toggle="modal" onclick="viewTransactions('#{data[0].budget_name}')")
       ="See Transactions"
