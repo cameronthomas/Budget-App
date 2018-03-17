@@ -1,25 +1,17 @@
+/**
+* Add Budget
+*/
 function addBudget() {
   var url = "http://localhost:3000/createBudget"
-  var validInput = true
+  var budgetNameList = getlocalBudgetNameList()
+  var budgetNameValid = $("#budgetName").val().length > 0 && $.inArray($("#budgetName").val(), budgetNameList) == -1
+  var budgetAmountValid = $.isNumeric($("#budgetAmount").val())
 
-  // Validate budget name
-  if($("#budgetName").val().length > 0) {
-    validInput = true
-    $('#budgetName').css('border-color', '#ced4da');
-  } else {
-    validInput = false
-    $('#budgetName').css('border-color', 'red');
-  }
+  // Make fields red if invalid
+  budgetNameValid ? $('#budgetName').css('border-color', '#ced4da') : $('#budgetName').css('border-color', 'red')
+  budgetAmountValid ? $('#budgetAmount').css('border-color', '#ced4da') : $('#budgetAmount').css('border-color', 'red')
 
-  // Valiate budget amount
-  if($.isNumeric($("#budgetAmount").val()) && validInput ) {
-      $('#budgetAmount').css('border-color', '#ced4da');
-  } else {
-    validInput = false
-    $('#budgetAmount').css('border-color', 'red');
-  }
-
-  if(validInput) {
+  if(budgetNameValid && budgetAmountValid) {
     $.ajax({
         type: 'POST',
         url: url,
@@ -42,30 +34,53 @@ function addBudget() {
   }
 }
 
-function addTransaction() {
-  var validInput = true
-
-  // Validate merchant
-  if($("#merchant").val().length > 0) {
-    validInput = true
-    $('#merchant').css('border-color', '#ced4da');
-  } else {
-    validInput = false
-    $('#merchant').css('border-color', 'red');
-  }
-
-  // Validate purchase amount
-  if($.isNumeric($("#purchaseAmount").val()) && validInput ) {
-      $('#purchaseAmount').css('border-color', '#ced4da');
-  } else {
-    validInput = false
-    $('#purchaseAmount').css('border-color', 'red');
-  }
-
-  // need to finish
-
+/**
+* Prepare to load add transactions modal
+*/
+function prepAddTransactionsModal(budgetName) {
+  $('#addTransactionNameLabel').text(budgetName)
+  $('#addTransactionModal').modal('show');
 }
 
+/**
+* Add transaction
+*/
+function addTransaction() {
+  var url = "http://localhost:3000/createTransaction"
+  var merchantValid = $("#merchant").val().length > 0
+  var purchaseAmountVald = $.isNumeric($("#purchaseAmount").val())
+
+  // Make fields red if invalid
+  merchantValid ? $('#merchant').css('border-color', '#ced4da') : $('#merchant').css('border-color', 'red')
+  purchaseAmountVald ? $('#purchaseAmount').css('border-color', '#ced4da') : $('#purchaseAmount').css('border-color', 'red')
+
+  if(merchantValid && purchaseAmountVald) {
+    $.ajax({
+      type: 'POST',
+      url: url,
+      data: {
+        'merchant': $("#merchant").val(),
+        'purchaseAmount' : $("#purchaseAmount").val(),
+        'budgetName' : $('#addTransactionNameLabel').text(),
+        'notes' : $("#notes").val()
+      },
+      success: function(msg){
+          console.log(msg);
+          $('#addTransactionModal').modal('hide');
+          $("#merchant").val('')
+          $("#purchaseAmount").val('')
+          $("#notes").val('')
+      },
+      error: function(msg) {
+        console.log('error' + msg);
+      }
+    });
+  }
+}
+
+/**
+* View Transactions
+*/
 function viewTransactions(name) {
     var url = "http://localhost:3000/budgetTransactions"
     $('#viewTransactionsModal').modal('show');
@@ -84,4 +99,19 @@ function viewTransactions(name) {
         console.log('error' + msg);
       }
     });
+}
+
+/**
+* Get list of all budget names
+*/
+function getlocalBudgetNameList() {
+  var budgetNameList = []
+
+  $('#budgetTable>tbody>tr').map(
+    function() {
+      var budgetName = $(this).find('td:first').text()
+      budgetNameList.push(budgetName)
+    })
+
+  return budgetNameList
 }

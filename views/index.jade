@@ -15,12 +15,12 @@ html(lang="en")
     include ./navbar.html
     
     div(id="budgetsTableDiv")
-      table(class="table table-striped")
+      table(id="budgetTable" class="table table-striped")
         thead
           tr
             th(scope="col")="Budget Name"
             th(scope="col")="Budget Amount"
-            tbody
+        tbody
           for budget in data
             tr(scope="row")
               td=budget.budget_name
@@ -29,8 +29,8 @@ html(lang="en")
                 button(type="button" class="btn btn-outline-info" data-toggle="modal" onclick="viewTransactions('#{budget.budget_name}')")
                   ="See Transactions"
               td
-                button(type="button" class="btn btn-outline-success" data-toggle="modal" onclick="$('#addTransactionModal').modal('show');")
-                    ="Add Transactions"
+                button(type="button" class="btn btn-outline-success" data-toggle="modal" onclick="prepAddTransactionsModal('#{budget.budget_name}')")
+                    ="Add Transaction"
 
     include ./addBudgetModal.html
     include ./addTransactionModal.html
