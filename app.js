@@ -75,7 +75,6 @@ app.get('/transactionPdf', function(req, res) {
   res.type("application/pdf")
   new Promise(function(resolve) {
     db.selectBudgetTransactions(req.query.budgetName, resolve)
-    //db.selectBudgetTransactions('Engineering', resolve)
   }).then(function(db_data) {
     reportGenerator.expenseReport(db_data).pipe(res)
   })
