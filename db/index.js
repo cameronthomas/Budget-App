@@ -21,14 +21,14 @@ module.exports = {
   /**
   * Select all budgets
   */
-  selectBudgets: function(callback) {
+  selectBudgets: function(resolve) {
     console.log("Select budgets")
     const queryText = "SELECT * FROM BUDGETS"
 
     // Run question
     client.query(queryText)
     .then(res => {
-      callback(res.rows)
+      resolve(res.rows)
     })
     .catch(e => console.error(e.stack))
   },
@@ -36,7 +36,7 @@ module.exports = {
   /**
   * Select budget transactions
   */
-  selectBudgetTransactions: function (budgetName, callback) {
+  selectBudgetTransactions: function (budgetName, resolve) {
     console.log("Select transactions")
     const queryText = {
       name: 'fetch-transactions',
@@ -47,7 +47,7 @@ module.exports = {
     // Run query
     client.query(queryText)
     .then(res => {
-      callback(res.rows)
+      resolve(res.rows)
     })
     .catch(e => console.error(e.stack))
   },
@@ -55,7 +55,7 @@ module.exports = {
   /**
   * Insert Budget
   */
-  insertBudget: function (newBudget, callback) {
+  insertBudget: function (newBudget, resolve) {
     console.log("Insert budget")
 
     // Create insert query
@@ -66,7 +66,7 @@ module.exports = {
 
     client.query(queryText, values)
     .then(res => {
-      callback(res.rows)
+      resolve(res.rows)
     })
     .catch(e => console.error(e.stack))
   },
@@ -74,7 +74,7 @@ module.exports = {
   /**
   * Insert transaction
   */
-  insertTransaction: function (data, callback) {
+  insertTransaction: function (data, resolve) {
     console.log("Insert transaction")
 
     const insertTransactionQueryText = "INSERT INTO transactions"
@@ -95,7 +95,7 @@ module.exports = {
     .then(res => {
       client.query(updateBudgetQuery)
       .then(res => {
-        callback(res.rows)
+        resolve(res.rows)
       })
       .catch(e => console.error(e.stack))
     })

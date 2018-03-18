@@ -1,6 +1,7 @@
 var PdfDocument = require('pdfkit')
 var fs = require('file-system')
 var PdfTable = require('voilab-pdf-table')
+const transactionPdfFileName = './pdf/transaction.pdf'
 //const chartjsNode = require('chartjs-node');
 
 /**
@@ -64,8 +65,9 @@ module.exports = {
 
     pdf.addPage();
     table.addBody(createTransactionTableDataList(data, 0));
-    pdf.pipe(fs.createWriteStream('./js/output.pdf'))
+    //pdf.pipe(fs.createWriteStream(transactionPdfFileName))
     pdf.end()
     console.log("report generated")
+    return pdf
   }
 }

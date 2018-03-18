@@ -34,7 +34,8 @@
     "promise": "^8.0.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "voilab-pdf-table": "^0.4.0"
+    "voilab-pdf-table": "^0.4.0",
+    "write-stream": "^0.4.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

@@ -13,7 +13,7 @@ html(lang="en")
     link(rel="stylesheet", href="./public/style.css")
   body
     include ./navbar.html
-    
+
     div(id="budgetsTableDiv")
       table(id="budgetTable" class="table table-striped")
         thead
@@ -33,10 +33,12 @@ html(lang="en")
                 button(type="button" class="btn btn-outline-info" data-toggle="modal" onclick="viewTransactions('#{budget.budget_name}')")
                   ="See Transactions"
               td
+                button(type="button" class="btn btn-outline-info" data-toggle="modal" onclick="downloadPdf('#{budget.budget_name}')")
+                  ="Download Transactions PDF"
+              td
                 button(type="button" class="btn btn-outline-success" data-toggle="modal" onclick="prepAddTransactionsModal('#{budget.budget_name}')")
-                    ="Add Transaction"
+                  ="Add Transaction"
 
     include ./addBudgetModal.html
     include ./addTransactionModal.html
     include ./viewTransactionsModal.html
-  
