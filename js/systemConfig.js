@@ -1,6 +1,6 @@
 const ip = require('ip')
 const ipAddress = ip.address() == "159.65.75.194" ? "159.65.75.194" : 'localhost'
-const port = ip.address() == "159.65.75.194" ? 80 : 3000
+const port = 8080
 
 // Database configs
 const dbPort = 5432
