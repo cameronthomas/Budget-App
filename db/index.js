@@ -1,21 +1,21 @@
-var ip = require('ip')
+const systemConfig = require('../js/systemConfig')
 const { Client } = require('pg')
 
 // Database connection config
 const client = new Client({
-  host: ip.address() == "159.65.75.194" ? "159.65.75.194" : "localhost",
-  port: 5432,
-  user: 'cameronthomas',
-  password: 'password',
-	database: 'budgetapp'
+  host: systemConfig.ip,
+  port: systemConfig.dbPort,
+  user: systemConfig.dbUser,
+  password: systemConfig.dbPassword,
+	database: systemConfig.dbName
 })
 
 // Connect to database
 client.connect()
 .then(res => {
-  console.log("connected")
+  console.log("Database connected")
 })
-.catch(e => console.error('connection error:', e.stack))
+.catch(e => console.error('Database connection error:', e.stack))
 
 module.exports = {
   /**
@@ -23,10 +23,10 @@ module.exports = {
   */
   selectBudgets: function(callback) {
     console.log("Select budgets")
-    const text = "SELECT * FROM BUDGETS"
+    const queryText = "SELECT * FROM BUDGETS"
 
     // Run question
-    client.query(text)
+    client.query(queryText)
     .then(res => {
       callback(res.rows)
     })
@@ -38,14 +38,14 @@ module.exports = {
   */
   selectBudgetTransactions: function (budgetName, callback) {
     console.log("Select transactions")
-    const text = {
+    const queryText = {
       name: 'fetch-transactions',
       text: 'SELECT * FROM transactions WHERE BUDGET_NAME = $1',
       values: [budgetName]
     }
 
     // Run query
-    client.query(text)
+    client.query(queryText)
     .then(res => {
       callback(res.rows)
     })
@@ -59,12 +59,12 @@ module.exports = {
     console.log("Insert budget")
 
     // Create insert query
-    const text = "INSERT INTO budgets (BUDGET_NAME, BUDGET_AMOUNT, "
+    const queryText = "INSERT INTO budgets (BUDGET_NAME, BUDGET_AMOUNT, "
     + "BUDGET_AMOUNT_USED, BUDGET_AMOUNT_LEFT)"
     + "VALUES ($1, $2, 0, $2) RETURNING *"
     const values = [newBudget.budgetName, newBudget.budgetAmount]
 
-    client.query(text, values)
+    client.query(queryText, values)
     .then(res => {
       callback(res.rows)
     })
@@ -77,7 +77,7 @@ module.exports = {
   insertTransaction: function (data, callback) {
     console.log("Insert transaction")
 
-    const insertTransactionQuery = "INSERT INTO transactions"
+    const insertTransactionQueryText = "INSERT INTO transactions"
     +"(MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)"
     + "VALUES ($1, $2, $3, $4);"
     const insertTransactionQueryValues = [data.merchant, data.purchaseAmount, data.budgetName, data.notes]
@@ -91,7 +91,7 @@ module.exports = {
     }
 
     // Run query
-    client.query(insertTransactionQuery, insertTransactionQueryValues)
+    client.query(insertTransactionQueryText, insertTransactionQueryValues)
     .then(res => {
       client.query(updateBudgetQuery)
       .then(res => {

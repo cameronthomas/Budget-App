@@ -1,8 +1,12 @@
+const serverUrl = "http://159.65.75.194"
+//const serverUrl = "http://localhost:3000"
+//self.location.hostname
 /**
 * Add Budget
 */
 function addBudget() {
-  var url = "http://localhost:3000/createBudget"
+  //const url = "http://localhost:3000/createBudget"
+  const url = serverUrl + "/createBudget"
   var budgetNameList = getlocalBudgetNameList()
   var budgetNameValid = $("#budgetName").val().length > 0 && $.inArray($("#budgetName").val(), budgetNameList) == -1
   var budgetAmountValid = $.isNumeric($("#budgetAmount").val())
@@ -45,7 +49,8 @@ function prepAddTransactionsModal(budgetName) {
 * Add transaction
 */
 function addTransaction() {
-  var url = "http://localhost:3000/createTransaction"
+  //var url = "http://localhost:3000/createTransaction"
+  const url = serverUrl + "/createTransaction"
   var merchantValid = $("#merchant").val().length > 0
   var purchaseAmountVald = $.isNumeric($("#purchaseAmount").val())
   var budgetName = $('#addTransactionNameLabel').text()
@@ -85,7 +90,8 @@ function addTransaction() {
 * View Transactions
 */
 function viewTransactions(name) {
-    var url = "http://localhost:3000/budgetTransactions"
+    //var url = "http://localhost:3000/budgetTransactions"
+    const url = serverUrl + "/budgetTransactions"
     $('#viewTransactionsModal').modal('show');
 
     $.ajax({

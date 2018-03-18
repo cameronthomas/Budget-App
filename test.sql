@@ -64,6 +64,62 @@ VALUES ('Merchant 6', 6, 'Engineering', 'these are the notes');
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
 VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
 
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
 
 
 
