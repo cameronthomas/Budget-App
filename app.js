@@ -6,6 +6,7 @@ const db = require('./db/index')
 const reportGenerator = require('./js/generateReport')
 const bodyParser = require('body-parser')
 const Promise = require("promise")
+const csv = require('csv-express')
 
 // Configure server
 app.set('view engine', 'jade')
@@ -61,7 +62,7 @@ app.post('/createBudget', function(req, res) {
  */
 app.post('/createTransaction', function(req, res) {
   new Promise(function(resolve) {
-      db.insertTransaction(req.body, resolve)
+    db.insertTransaction(req.body, resolve)
   }).then(function(db_data) {
     res.send(db_data)
   })
@@ -76,6 +77,25 @@ app.get('/transactionPdf', function(req, res) {
     db.selectBudgetTransactions(req.query.budgetName, resolve)
   }).then(function(db_data) {
     reportGenerator.expenseReport(db_data).pipe(res)
+    console.log("PDF report generated")
+  })
+})
+
+/**
+ * Generate CSV
+ */
+app.get('/transactionCsv.csv', function(req, res) {
+  res.type('text/csv')
+  new Promise(function(resolve) {
+    db.selectBudgetTransactions(req.query.budgetName, resolve)
+  }).then(function(db_data) {
+    if(db_data.length == 0) {
+      res.send("No Transactions")
+    } else {
+      res.csv(reportGenerator.prepareListForCsv(db_data), true)
+    }
+
+    console.log("CSV generated")
   })
 })
 

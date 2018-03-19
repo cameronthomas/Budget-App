@@ -11,5 +11,8 @@ for budget in data
       button(type="button" class="btn btn-outline-info" data-toggle="modal" onclick="downloadPdf('#{budget.budget_name}')")
         ="Download Transactions Report PDF"
     td
+      button(type="button" class="btn btn-outline-info" data-toggle="modal" onclick="downloadCsv('#{budget.budget_name}')")
+        ="Download Transactions Report CSV"
+    td
       button(type="button" class="btn btn-outline-success" data-toggle="modal" onclick="prepAddTransactionsModal('#{budget.budget_name}')")
         ="Add Transaction"

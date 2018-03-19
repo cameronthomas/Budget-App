@@ -128,6 +128,11 @@ function downloadPdf(budgetName) {
   window.open(url, '_blank');
 }
 
+function downloadCsv(budgetName) {
+  let url = serverUrl + "/transactionCsv.csv?budgetName=" + budgetName
+  window.open(url, '_blank');
+}
+
 /**
  * Clear values from add budgetModal
  */

@@ -57,7 +57,12 @@ module.exports = {
       .addBody(createTransactionTableDataList(data, 0));
 
     pdf.end()
-    console.log("report generated")
     return pdf
+  },
+  /**
+   * Prepare list for csv
+   */
+  prepareListForCsv: function(data) {
+    return createTransactionTableDataList(data, 0)
   }
 }
