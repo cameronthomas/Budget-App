@@ -1,7 +1,5 @@
-//const serverUrl = "http://159.65.75.194:8080"
 const serverUrl = "http://" + document.domain + ":8080"
-//const serverUrl = "http://localhost:8080"
-
+console.log($.camelCase("Camel case"))
 /**
  * Add Budget
  */
@@ -40,8 +38,9 @@ function addBudget() {
 /**
  * Prepare to load add transactions modal
  */
-function prepAddTransactionsModal(budgetName) {
+function prepAddTransactionsModal(budgetName, budgetNameHtmlId) {
   $('#addTransactionNameLabel').text(budgetName)
+  $('#addTransactionCamelCaseName').text(budgetNameHtmlId)
   $('#addTransactionModal').modal('show');
 }
 
@@ -54,6 +53,7 @@ function addTransaction() {
   let merchantValid = $("#merchant").val().length > 0
   let purchaseAmountVald = $.isNumeric($("#purchaseAmount").val())
   let budgetName = $.trim($('#addTransactionNameLabel').text())
+  let budgetNameHtmlId = $.trim($('#addTransactionCamelCaseName').text())
 
   // Make fields red if invalid
   merchantValid ? $('#merchant').css('border-color', '#ced4da') : $('#merchant').css('border-color', 'red')
@@ -71,8 +71,8 @@ function addTransaction() {
       },
       success: function(msg) {
         console.log(msg)
-        $('#' + budgetName + "AmountUsed").html(msg[0].budget_amount_used)
-        $('#' + budgetName + "AmountLeft").html(msg[0].budget_amount_left)
+        $('#' + budgetNameHtmlId + "AmountUsed").html(msg[0].budget_amount_used)
+        $('#' + budgetNameHtmlId + "AmountLeft").html(msg[0].budget_amount_left)
         $('#addTransactionModal').modal('hide');
         clearAddTransactionModal()
       },

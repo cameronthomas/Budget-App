@@ -8,6 +8,7 @@ DROP TABLE budgets;
 -- Create new table
 CREATE TABLE BUDGETS(
    BUDGET_NAME TEXT PRIMARY KEY NOT NULL,
+   BUDGET_NAME_HTML_ID TEXT NOT NULL,
    BUDGET_AMOUNT MONEY NOT NULL,
    BUDGET_AMOUNT_USED MONEY NOT NULL,
    BUDGET_AMOUNT_LEFT MONEY NOT NULL
@@ -17,14 +18,14 @@ CREATE TABLE BUDGETS(
 \dt;
 
 -- Insert into new table
-INSERT INTO budgets (budget_name, budget_amount, budget_amount_used, budget_amount_left)
-VALUES ('Engineering', 30000, 0, 3000);
+INSERT INTO budgets (budget_name, budget_name_html_id, budget_amount, budget_amount_used, budget_amount_left)
+VALUES ('Engineering', 'Engineering', 30000, 0, 3000);
 
-INSERT INTO budgets (budget_name, budget_amount, budget_amount_used, budget_amount_left)
-VALUES ('Sales', 500, 0, 500); 
+INSERT INTO budgets (budget_name, budget_name_html_id, budget_amount, budget_amount_used, budget_amount_left)
+VALUES ('Sales', 'Sales', 500, 0, 500); 
 
-INSERT INTO budgets (budget_name, budget_amount, budget_amount_used, budget_amount_left)
-VALUES ('HR', 500, 0, 500);
+INSERT INTO budgets (budget_name, budget_name_html_id,  budget_amount, budget_amount_used, budget_amount_left)
+VALUES ('HR', 'HR', 500, 0, 500);
 
 -- Display values in new table
 SELECT * FROM budgets;

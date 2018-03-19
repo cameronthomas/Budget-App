@@ -20,6 +20,7 @@
     "babel-register": "^6.26.0",
     "body-parser": "^1.18.2",
     "bootstrap-select": "^1.12.4",
+    "camelcase": "^4.1.0",
     "create-react-class": "^15.6.3",
     "csv-express": "^1.2.2",
     "csv-write-stream": "^2.0.0",

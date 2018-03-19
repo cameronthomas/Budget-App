@@ -7,23 +7,25 @@ DROP TABLE budgets;
 
 -- Create new table
 CREATE TABLE BUDGETS(
---   ID SERIAL PRIMARY KEY,
    BUDGET_NAME TEXT PRIMARY KEY NOT NULL,
-   BUDGET_AMOUNT MONEY NOT NULL
+   BUDGET_NAME_FOR_HTML_ID TEXT NOT NULL,
+   BUDGET_AMOUNT MONEY NOT NULL,
+   BUDGET_AMOUNT_USED MONEY NOT NULL,
+   BUDGET_AMOUNT_LEFT MONEY NOT NULL
 );
 
 -- Display all tables
 \dt;
 
 -- Insert into new table
-INSERT INTO budgets (budget_name, budget_amount)
-VALUES ('Engineering', 30000);
+INSERT INTO budgets (budget_name, budget_name_for_html_id, budget_amount, budget_amount_used, budget_amount_left)
+VALUES ('Engineering', 'Engineering', 30000, 0, 3000);
 
-INSERT INTO budgets (budget_name, budget_amount)
-VALUES ('Sales', 500); 
+INSERT INTO budgets (budget_name, budget_name_for_html_id, budget_amount, budget_amount_used, budget_amount_left)
+VALUES ('Sales', 'Sales', 500, 0, 500); 
 
-INSERT INTO budgets (budget_name, budget_amount)
-VALUES ('HR', 500);
+INSERT INTO budgets (budget_name, budget_name_for_html_id,  budget_amount, budget_amount_used, budget_amount_left)
+VALUES ('HR', 'HR', 500, 0, 500);
 
 -- Display values in new table
 SELECT * FROM budgets;
@@ -43,62 +45,81 @@ CREATE TABLE TRANSACTIONS(
 
 -- INSERT into new table
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'Engineering', 'these are the notes');
+VALUES ('Merchant 1', 1, 'Engineering', 'these are the notes');
 
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'Engineering', 'these are the notes');
+VALUES ('Merchant 2', 2, 'Engineering', 'these are the notes');
 
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'Engineering', 'these are the notes');
+VALUES ('Merchant 3', 3, 'Engineering', 'these are the notes');
 
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'HR', 'these are the notes');
+VALUES ('Merchant 4', 4, 'Engineering', 'these are the notes');
 
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'HR', 'these are the notes');
+VALUES ('Merchant 5', 5, 'Engineering', 'these are the notes');
 
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+VALUES ('Merchant 6', 6, 'Engineering', 'these are the notes');
 
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
 
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
 
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
 
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
 
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
 
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
 
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'Sales', 'these are the notasfsadk;fjks;dkfjs;dkf;sdfj;sdjf;sfjksdklsdfklkljsdfke
-asdlfkjs;adjf;lsdjfsdfljsjdkfsddddddddddddddal;ksjdf;asdjflsadf
-asl;dkfj;asldjf;lasjdfjksaldfjsadfsldfjs
-askldfjlsaf
-askdf;s');
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
 
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
 
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
 
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
 
 INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
-VALUES ('Merchant 1', 234, 'Sales', 'these are the notes');
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
 
 
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
 
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
+
+INSERT INTO transactions (MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)
+VALUES ('Merchant 7', 7, 'Engineering', 'these are the notes');
 
 
 

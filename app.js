@@ -90,8 +90,10 @@ app.get('/transactionCsv.csv', function(req, res) {
     db.selectBudgetTransactions(req.query.budgetName, resolve)
   }).then(function(db_data) {
     if(db_data.length == 0) {
+      console.log("none")
       res.send("No Transactions")
     } else {
+      console.log("yes")
       res.csv(reportGenerator.prepareListForCsv(db_data), true)
     }
 

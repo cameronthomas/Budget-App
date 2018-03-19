@@ -1,5 +1,6 @@
 const systemConfig = require('../js/systemConfig')
 const { Client } = require('pg')
+const camelCase = require('camelcase');
 
 // Database connection config
 const client = new Client({
@@ -16,6 +17,10 @@ client.connect()
   console.log("Database connected")
 })
 .catch(e => console.error('Database connection error:', e.stack))
+
+function getBudgetNameHtmlId() {
+  return "budgetNameHtmlId"
+}
 
 module.exports = {
   /**
@@ -59,10 +64,10 @@ module.exports = {
     console.log("Insert budget")
 
     // Create insert query
-    const queryText = "INSERT INTO budgets (BUDGET_NAME, BUDGET_AMOUNT, "
+    const queryText = "INSERT INTO budgets (BUDGET_NAME, BUDGET_NAME_HTML_ID, BUDGET_AMOUNT, "
     + "BUDGET_AMOUNT_USED, BUDGET_AMOUNT_LEFT)"
-    + "VALUES ($1, $2, 0, $2) RETURNING *"
-    const values = [newBudget.budgetName, newBudget.budgetAmount]
+    + "VALUES ($1, $2, $3, 0, $3) RETURNING *"
+    const values = [newBudget.budgetName, camelCase(newBudget.budgetName),  newBudget.budgetAmount]
 
     client.query(queryText, values)
     .then(res => {
