@@ -1,6 +1,7 @@
-const serverUrl = "http://159.65.75.194:8080"
+//const serverUrl = "http://159.65.75.194:8080"
+const serverUrl = "http://" + document.domain + ":8080"
 //const serverUrl = "http://localhost:8080"
-//self.location.hostname
+
 /**
  * Add Budget
  */
