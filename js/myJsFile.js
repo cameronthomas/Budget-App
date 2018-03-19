@@ -6,10 +6,10 @@ const serverUrl = "http://159.65.75.194:8080"
  */
 function addBudget() {
   //const url = "http://localhost:3000/createBudget"
-  const url = serverUrl + "/createBudget"
-  var budgetNameList = getlocalBudgetNameList()
-  var budgetNameValid = $("#budgetName").val().length > 0 && $.inArray($("#budgetName").val(), budgetNameList) == -1
-  var budgetAmountValid = $.isNumeric($("#budgetAmount").val())
+  let url = serverUrl + "/createBudget"
+  let budgetNameList = getlocalBudgetNameList()
+  let budgetNameValid = $("#budgetName").val().length > 0 && $.inArray($("#budgetName").val(), budgetNameList) == -1
+  let budgetAmountValid = $.isNumeric($("#budgetAmount").val())
 
   // Make fields red if invalid
   budgetNameValid ? $('#budgetName').css('border-color', '#ced4da') : $('#budgetName').css('border-color', 'red')
@@ -21,14 +21,13 @@ function addBudget() {
       url: url,
       contentType: 'application/json',
       data: JSON.stringify({
-        'budgetName': $("#budgetName").val(),
+        'budgetName': $.trim($("#budgetName").val()),
         'budgetAmount': $("#budgetAmount").val()
       }),
       success: function(msg) {
-        $("#budgetTable").find('tbody').append($(msg))
+        $("#budgetsTableBody").append($(msg))
         $('#addBudgetModal').modal('hide');
-        $('#budgetName').val('')
-        $('#budgetAmount').val('')
+        clearAddBudgetModal()
       },
       error: function(msg) {
         console.log('error' + msg);
@@ -50,11 +49,10 @@ function prepAddTransactionsModal(budgetName) {
  */
 function addTransaction() {
   //var url = "http://localhost:3000/createTransaction"
-  const url = serverUrl + "/createTransaction"
-  var merchantValid = $("#merchant").val().length > 0
-  var purchaseAmountVald = $.isNumeric($("#purchaseAmount").val())
-  var budgetName = $('#addTransactionNameLabel').text()
-
+  let url = serverUrl + "/createTransaction"
+  let merchantValid = $("#merchant").val().length > 0
+  let purchaseAmountVald = $.isNumeric($("#purchaseAmount").val())
+  let budgetName = $.trim($('#addTransactionNameLabel').text())
 
   // Make fields red if invalid
   merchantValid ? $('#merchant').css('border-color', '#ced4da') : $('#merchant').css('border-color', 'red')
@@ -65,19 +63,17 @@ function addTransaction() {
       type: 'POST',
       url: url,
       data: {
-        'merchant': $("#merchant").val(),
+        'merchant': $.trim($("#merchant").val()),
         'purchaseAmount': $("#purchaseAmount").val(),
         'budgetName': budgetName,
-        'notes': $("#notes").val()
+        'notes': $.trim($("#notes").val())
       },
       success: function(msg) {
         console.log(msg)
         $('#' + budgetName + "AmountUsed").html(msg[0].budget_amount_used)
         $('#' + budgetName + "AmountLeft").html(msg[0].budget_amount_left)
         $('#addTransactionModal').modal('hide');
-        $("#merchant").val('')
-        $("#purchaseAmount").val('')
-        $("#notes").val('')
+        clearAddTransactionModal()
       },
       error: function(msg) {
         console.log('error' + msg);
@@ -90,8 +86,7 @@ function addTransaction() {
  * View Transactions
  */
 function viewTransactions(name) {
-  //var url = "http://localhost:3000/budgetTransactions"
-  const url = serverUrl + "/budgetTransactions"
+  let url = serverUrl + "/budgetTransactions"
   $('#viewTransactionsModal').modal('show');
 
   $.ajax({
@@ -114,9 +109,9 @@ function viewTransactions(name) {
  * Get list of all budget names
  */
 function getlocalBudgetNameList() {
-  var budgetNameList = []
+  let budgetNameList = []
 
-  $('#budgetTable>tbody>tr').map(
+  $('#budgetsTableBody>tr').map(
     function() {
       var budgetName = $(this).find('td:first').text()
       budgetNameList.push(budgetName)
@@ -125,11 +120,27 @@ function getlocalBudgetNameList() {
   return budgetNameList
 }
 
+/**
+ * Download and display transactoins pdf
+ */
 function downloadPdf(budgetName) {
-  //var url = "http://localhost:3000/budgetTransactions"
-  const url = serverUrl + "/transactionPdf?budgetName=" + budgetName
-
-
-
+  let url = serverUrl + "/transactionPdf?budgetName=" + budgetName
   window.open(url, '_blank');
+}
+
+/**
+ * Clear values from add budgetModal
+ */
+function clearAddBudgetModal() {
+  $('#budgetName').val('')
+  $('#budgetAmount').val('')
+}
+
+/**
+ * Clear values from add budgetModal
+ */
+function clearAddTransactionModal() {
+  $('#merchant').val('')
+  $('#purchaseAmount').val('')
+  $('#notes').val('')
 }

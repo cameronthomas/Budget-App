@@ -1,25 +1,21 @@
-var PdfDocument = require('pdfkit')
-var fs = require('file-system')
-var PdfTable = require('voilab-pdf-table')
+const PdfDocument = require('pdfkit')
+const fs = require('file-system')
+const PdfTable = require('voilab-pdf-table')
 const transactionPdfFileName = './pdf/transaction.pdf'
-//const chartjsNode = require('chartjs-node');
 
 /**
- * This might have better to do with a mop function or a loop,
- * but I wanted to show somem recursion.
+ * This doesn't require recursion, but I wanted to show some recursion
  */
 function createTransactionTableDataList(dataList, index) {
   if (index == dataList.length) {
     return []
   }
 
-  var list = [{
+  return list = [{
     merchantName: dataList[index].merchant_name,
     purchaseAmount: dataList[index].purchase_amount,
     notes: dataList[index].notes
-  }]
-
-  return list.concat(createTransactionTableDataList(dataList, index + 1))
+  }].concat(createTransactionTableDataList(dataList, index + 1))
 }
 
 module.exports = {
@@ -27,15 +23,11 @@ module.exports = {
    * Generate transactions report
    */
   expenseReport: function(data) {
-    var pdf = new PdfDocument({
+    let pdf = new PdfDocument({
       autoFirstPage: false
-    })
+    }).addPage();
 
-    var table = new PdfTable(pdf, {
-      bottomMargin: 30
-    });
-
-    table
+    new PdfTable(pdf)
       // add some plugins (here, a 'fit-to-width' for a column)
       .addPlugin(new(require('voilab-pdf-table/plugins/fitcolumn'))({
         column: 'merchantName'
@@ -62,10 +54,8 @@ module.exports = {
           width: 250
         }
       ])
+      .addBody(createTransactionTableDataList(data, 0));
 
-    pdf.addPage();
-    table.addBody(createTransactionTableDataList(data, 0));
-    //pdf.pipe(fs.createWriteStream(transactionPdfFileName))
     pdf.end()
     console.log("report generated")
     return pdf

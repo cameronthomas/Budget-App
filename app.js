@@ -5,9 +5,7 @@ const port = systemConfig.port
 const db = require('./db/index')
 const reportGenerator = require('./js/generateReport')
 const bodyParser = require('body-parser')
-const fs = require('file-system')
-var Promise = require("promise")
-var writeStream = require("write-stream")
+const Promise = require("promise")
 
 // Configure server
 app.set('view engine', 'jade')
@@ -51,6 +49,7 @@ app.post('/createBudget', function(req, res) {
   new Promise(function(resolve) {
     db.insertBudget(req.body, resolve)
   }).then(function(db_data) {
+    console.log(db_data)
     res.render('budgetsTable', {
       data: db_data
     })
