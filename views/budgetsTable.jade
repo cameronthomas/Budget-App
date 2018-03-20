@@ -1,3 +1,6 @@
+//--
+//-- Converted from Bootstrap HTML and change accoreding to needs.
+//--
 for budget in data
   tr(scope="row")
     td=budget.budget_name
@@ -5,16 +8,16 @@ for budget in data
     td(id="#{budget.budget_name_html_id}AmountUsed")=budget.budget_amount_used
     td(id="#{budget.budget_name_html_id}AmountLeft")=budget.budget_amount_left
     td
-      button(type="button" class="btn btn-outline-info" data-toggle="modal" onclick="viewTransactions('#{budget.budget_name}')")
+      button(type="button" class="btn-sm btn-outline-info" data-toggle="modal" onclick="viewTransactions('#{budget.budget_name}')")
         ="See Transactions"
     td
-      button(type="button" class="btn btn-outline-info" data-toggle="modal" onclick="downloadPdf('#{budget.budget_name}')")
-        ="Download Transactions Report PDF"
+      button(type="button" class="btn-sm btn-outline-info" data-toggle="modal" onclick="downloadPdf('#{budget.budget_name}')")
+        ="Download Transactions PDF"
     td
-      button(type="button" class="btn btn-outline-info" data-toggle="modal" onclick="downloadCsv('#{budget.budget_name}')")
-        ="Download Transactions Report CSV"
+      button(type="button" class="btn-sm btn-outline-info" data-toggle="modal" onclick="downloadCsv('#{budget.budget_name}')")
+        ="Download Transactions CSV"
     td
-      button(type="button" class="btn btn-outline-success" data-toggle="modal" onclick="prepAddTransactionsModal('#{budget.budget_name}', '#{budget.budget_name_html_id}' )")
+      button(type="button" class="btn-sm btn-outline-success" data-toggle="modal" onclick="prepAddTransactionsModal('#{budget.budget_name}', '#{budget.budget_name_html_id}' )")
         ="Add Transaction"
         
         

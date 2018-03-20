@@ -1,10 +1,9 @@
 const serverUrl = "http://" + document.domain + ":8080"
-console.log($.camelCase("Camel case"))
+
 /**
  * Add Budget
  */
 function addBudget() {
-  //const url = "http://localhost:3000/createBudget"
   let url = serverUrl + "/createBudget"
   let budgetNameList = getlocalBudgetNameList()
   let budgetNameValid = $("#budgetName").val().length > 0 && $.inArray($("#budgetName").val(), budgetNameList) == -1
@@ -14,6 +13,7 @@ function addBudget() {
   budgetNameValid ? $('#budgetName').css('border-color', '#ced4da') : $('#budgetName').css('border-color', 'red')
   budgetAmountValid ? $('#budgetAmount').css('border-color', '#ced4da') : $('#budgetAmount').css('border-color', 'red')
 
+  // Add budget
   if (budgetNameValid && budgetAmountValid) {
     $.ajax({
       type: 'POST',
@@ -48,7 +48,6 @@ function prepAddTransactionsModal(budgetName, budgetNameHtmlId) {
  * Add transaction
  */
 function addTransaction() {
-  //var url = "http://localhost:3000/createTransaction"
   let url = serverUrl + "/createTransaction"
   let merchantValid = $("#merchant").val().length > 0
   let purchaseAmountVald = $.isNumeric($("#purchaseAmount").val())
@@ -59,6 +58,7 @@ function addTransaction() {
   merchantValid ? $('#merchant').css('border-color', '#ced4da') : $('#merchant').css('border-color', 'red')
   purchaseAmountVald ? $('#purchaseAmount').css('border-color', '#ced4da') : $('#purchaseAmount').css('border-color', 'red')
 
+  // Add transaction
   if (merchantValid && purchaseAmountVald) {
     $.ajax({
       type: 'POST',
@@ -90,6 +90,7 @@ function viewTransactions(name) {
   let url = serverUrl + "/budgetTransactions"
   $('#viewTransactionsModal').modal('show');
 
+  // Get transactions
   $.ajax({
     type: 'GET',
     url: url,
@@ -112,6 +113,7 @@ function viewTransactions(name) {
 function getlocalBudgetNameList() {
   let budgetNameList = []
 
+  // Fill list with budget names from html budets table
   $('#budgetsTableBody>tr').map(
     function() {
       var budgetName = $(this).find('td:first').text()
@@ -129,6 +131,9 @@ function downloadPdf(budgetName) {
   window.open(url, '_blank');
 }
 
+/**
+ * Download and display transactoins CSV
+ */
 function downloadCsv(budgetName) {
   let url = serverUrl + "/transactionCsv.csv?budgetName=" + budgetName
   window.open(url, '_blank');

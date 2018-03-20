@@ -1,10 +1,10 @@
+// Sources: https://github.com/voilab/voilab-pdf-table
+// https://www.youtube.com/watch?v=q4wBJxZf3Os
 const PdfDocument = require('pdfkit')
-const fs = require('file-system')
 const PdfTable = require('voilab-pdf-table')
-const transactionPdfFileName = './pdf/transaction.pdf'
 
 /**
- * This doesn't require recursion, but I wanted to show some recursion
+ * This doesn't require recursion, but I wanted to show some recursion.
  */
 function createTransactionTableDataList(dataList, index) {
   if (index == dataList.length) {
@@ -59,6 +59,7 @@ module.exports = {
     pdf.end()
     return pdf
   },
+  
   /**
    * Prepare list for csv
    */
