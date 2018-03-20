@@ -26,7 +26,7 @@ module.exports = {
    */
   selectBudgets: function(resolve) {
     console.log("Select budgets")
-    const queryText = "SELECT * FROM BUDGETS"
+    let queryText = "SELECT * FROM BUDGETS"
 
     client.query(queryText)
       .then(res => {
@@ -40,7 +40,7 @@ module.exports = {
    */
   selectBudgetTransactions: function(budgetName, resolve) {
     console.log("Select transactions")
-    const queryText = {
+    let queryText = {
       name: 'fetch-transactions',
       text: 'SELECT * FROM transactions WHERE BUDGET_NAME = $1',
       values: [budgetName]
@@ -58,10 +58,10 @@ module.exports = {
    */
   insertBudget: function(newBudget, resolve) {
     console.log("Insert budget")
-    const queryText = "INSERT INTO budgets (BUDGET_NAME, BUDGET_NAME_HTML_ID, BUDGET_AMOUNT, " +
+    let queryText = "INSERT INTO budgets (BUDGET_NAME, BUDGET_NAME_HTML_ID, BUDGET_AMOUNT, " +
       "BUDGET_AMOUNT_USED, BUDGET_AMOUNT_LEFT)" +
       "VALUES ($1, $2, $3, 0, $3) RETURNING *"
-    const values = [newBudget.budgetName, camelCase(newBudget.budgetName), newBudget.budgetAmount]
+    let values = [newBudget.budgetName, camelCase(newBudget.budgetName), newBudget.budgetAmount]
 
     client.query(queryText, values)
       .then(res => {
@@ -75,12 +75,12 @@ module.exports = {
    */
   insertTransaction: function(data, resolve) {
     console.log("Insert transaction")
-    const insertTransactionQueryText = "INSERT INTO transactions" +
+    let insertTransactionQueryText = "INSERT INTO transactions" +
       "(MERCHANT_NAME, PURCHASE_AMOUNT, BUDGET_NAME, NOTES)" +
       "VALUES ($1, $2, $3, $4);"
-    const insertTransactionQueryValues = [data.merchant, data.purchaseAmount, data.budgetName, data.notes]
+    let insertTransactionQueryValues = [data.merchant, data.purchaseAmount, data.budgetName, data.notes]
 
-    const updateBudgetQuery = {
+    let updateBudgetQuery = {
       text: "UPDATE BUDGETS " +
         "SET budget_amount_used = budget_amount_used + $1, " +
         "budget_amount_left = budget_amount_left - $1" +
