@@ -6,7 +6,8 @@ const camelCase = require('camelcase');
 
 // Database connection config
 const client = new Client({
-	database: systemConfig.dbName
+	database: systemConfig.dbName,
+  password: systemConfig.dbPassword
 })
 
 // Connect to database
