@@ -18,7 +18,7 @@ div(class="modal fade" id="addTransactionModal" tabindex="-1" role="dialog" aria
         div(id="selectDiv" class="form-group")
           label(id="categoryPicker")="Budget Category Name:"
           label(id="addTransactionNameLabel")
-          input(id="addTransactionCamelCaseName" type="hidden")
+          input(id="addTransactionEscaped" type="hidden")
         div(class="form-group")
           label="Notes"
           textarea(class="form-control" id="notes" placeholder="Notes" autocomplete="off" rows="10")

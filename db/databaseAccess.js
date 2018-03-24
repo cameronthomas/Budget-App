@@ -61,7 +61,7 @@ module.exports = {
     let queryText = "INSERT INTO budgets (BUDGET_NAME, BUDGET_NAME_HTML_ID, BUDGET_AMOUNT, " +
       "BUDGET_AMOUNT_USED, BUDGET_AMOUNT_LEFT)" +
       "VALUES ($1, $2, $3, 0, $3) RETURNING *"
-    let values = [newBudget.budgetName, camelCase(newBudget.budgetName), newBudget.budgetAmount]
+    let values = [newBudget.budgetName, escape(newBudget.budgetName), newBudget.budgetAmount]
 
     client.query(queryText, values)
       .then(res => {

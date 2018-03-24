@@ -38,9 +38,9 @@ function addBudget() {
 /**
  * Prepare to load add transactions modal
  */
-function prepAddTransactionsModal(budgetName, budgetNameHtmlId) {
-  $('#addTransactionNameLabel').text(budgetName)
-  $('#addTransactionCamelCaseName').text(budgetNameHtmlId)
+function prepAddTransactionsModal(budgetNameHtmlId) {
+  $('#addTransactionNameLabel').text(unescape(budgetNameHtmlId))
+  $('#addTransactionEscaped').text(budgetNameHtmlId)
   $('#addTransactionModal').modal('show');
 }
 
@@ -52,7 +52,7 @@ function addTransaction() {
   let merchantValid = $("#merchant").val().length > 0
   let purchaseAmountVald = $.isNumeric($("#purchaseAmount").val())
   let budgetName = $.trim($('#addTransactionNameLabel').text())
-  let budgetNameHtmlId = $.trim($('#addTransactionCamelCaseName').text())
+  let budgetNameHtmlId = $.trim($('#addTransactionEscaped').text())
 
   // Make fields red if invalid
   merchantValid ? $('#merchant').css('border-color', '#ced4da') : $('#merchant').css('border-color', 'red')
@@ -71,8 +71,8 @@ function addTransaction() {
       },
       success: function(msg) {
         console.log(msg)
-        $('#' + budgetNameHtmlId + "AmountUsed").html(msg[0].budget_amount_used)
-        $('#' + budgetNameHtmlId + "AmountLeft").html(msg[0].budget_amount_left)
+        document.getElementById(budgetNameHtmlId + 'AmountUsed'). innerHTML = msg[0].budget_amount_used
+        document.getElementById(budgetNameHtmlId + 'AmountLeft'). innerHTML = msg[0].budget_amount_left
         $('#addTransactionModal').modal('hide');
         clearAddTransactionModal()
       },
@@ -87,6 +87,7 @@ function addTransaction() {
  * View Transactions
  */
 function viewTransactions(name) {
+  console.log(name)
   let url = serverUrl + "/budgetTransactions"
   $('#viewTransactionsModal').modal('show');
 
@@ -95,7 +96,7 @@ function viewTransactions(name) {
     type: 'GET',
     url: url,
     data: {
-      'budgetName': name
+      'budgetName': unescape(name)
     },
     success: function(msg) {
       console.log(msg);
@@ -127,7 +128,7 @@ function getlocalBudgetNameList() {
  * Download and display transactoins pdf
  */
 function downloadPdf(budgetName) {
-  let url = serverUrl + "/transactionPdf?budgetName=" + budgetName
+  let url = serverUrl + "/transactionPdf?budgetName=" + unescape(budgetName)
   window.open(url, '_blank');
 }
 
@@ -135,7 +136,7 @@ function downloadPdf(budgetName) {
  * Download and display transactoins CSV
  */
 function downloadCsv(budgetName) {
-  let url = serverUrl + "/transactionCsv.csv?budgetName=" + budgetName
+  let url = serverUrl + "/transactionCsv.csv?budgetName=" + unescape(budgetName)
   window.open(url, '_blank');
 }
 
