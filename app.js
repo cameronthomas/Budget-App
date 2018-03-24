@@ -62,7 +62,6 @@ app.post('/createBudget', function(req, res) {
  */
 app.post('/createTransaction', function(req, res) {
   new Promise(function(resolve) {
-    console.log(req.body.budgetName)
     db.insertTransaction(req.body, resolve)
   }).then(function(db_data) {
     res.send(db_data)
