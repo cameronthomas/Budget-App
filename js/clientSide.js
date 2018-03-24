@@ -39,7 +39,7 @@ function addBudget() {
  * Prepare to load add transactions modal
  */
 function prepAddTransactionsModal(budgetNameHtmlId) {
-  $('#addTransactionNameLabel').text(unescape(budgetNameHtmlId))
+  $('#addTransactionNameLabel').text(decodeURIComponent(budgetNameHtmlId)) // Convert back to regulate budget name
   $('#addTransactionEscaped').text(budgetNameHtmlId)
   $('#addTransactionModal').modal('show');
 }
@@ -96,7 +96,7 @@ function viewTransactions(name) {
     type: 'GET',
     url: url,
     data: {
-      'budgetName': unescape(name)
+      'budgetName': decodeURIComponent(name)  // Convert back to regulate budget name
     },
     success: function(msg) {
       console.log(msg);
