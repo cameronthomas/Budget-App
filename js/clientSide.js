@@ -70,7 +70,6 @@ function addTransaction() {
         'notes': $.trim($("#notes").val())
       },
       success: function(msg) {
-        console.log(msg)
         document.getElementById(budgetNameHtmlId + 'AmountUsed'). innerHTML = msg[0].budget_amount_used
         document.getElementById(budgetNameHtmlId + 'AmountLeft'). innerHTML = msg[0].budget_amount_left
         $('#addTransactionModal').modal('hide');
@@ -87,7 +86,6 @@ function addTransaction() {
  * View Transactions
  */
 function viewTransactions(name) {
-  console.log(name)
   let url = serverUrl + "/budgetTransactions"
   $('#viewTransactionsModal').modal('show');
 
@@ -99,11 +97,10 @@ function viewTransactions(name) {
       'budgetName': decodeURIComponent(name)  // Convert back to regulate budget name
     },
     success: function(msg) {
-      console.log(msg);
       $('#transactionsTable').html(msg)
     },
     error: function(msg) {
-      console.log('error' + msg);
+      console.log('error' + msg)
     }
   });
 }
