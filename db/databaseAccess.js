@@ -43,7 +43,7 @@ module.exports = {
     let queryText = {
       name: 'fetch-transactions',
       text: 'SELECT * FROM transactions WHERE BUDGET_NAME = $1',
-      values: [budgetName]
+      values: [unescape(budgetName)]
     }
 
     client.query(queryText)

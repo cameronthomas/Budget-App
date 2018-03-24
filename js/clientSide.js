@@ -128,7 +128,7 @@ function getlocalBudgetNameList() {
  * Download and display transactoins pdf
  */
 function downloadPdf(budgetName) {
-  let url = serverUrl + "/transactionPdf?budgetName=" + unescape(budgetName)
+  let url = serverUrl + "/transactionPdf?budgetName=" + budgetName
   window.open(url, '_blank');
 }
 
@@ -136,7 +136,7 @@ function downloadPdf(budgetName) {
  * Download and display transactoins CSV
  */
 function downloadCsv(budgetName) {
-  let url = serverUrl + "/transactionCsv.csv?budgetName=" + unescape(budgetName)
+  let url = serverUrl + "/transactionCsv.csv?budgetName=" + budgetName
   window.open(url, '_blank');
 }
 
